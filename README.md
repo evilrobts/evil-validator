@@ -199,3 +199,8 @@ It becomes routine, when we do more of checks like this.
 
 - `npm test`
 - `npm run-script test-cov`
+
+
+## License
+
+MIT
