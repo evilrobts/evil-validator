@@ -3,12 +3,13 @@ var path = require('path');
 var _ = require('lodash');
 var should = require('should');
 
-var expressValidatorHelper = require('..');
+var Validator = require('../lib/helper');
+var express = require('../lib/express');
 
 
 describe('helper', function() {
   beforeEach(function() {
-    this.validator = new expressValidatorHelper.Validator();
+    this.validator = new Validator();
   });
 
   it('should have `add` method', function() {
@@ -45,8 +46,8 @@ describe('helper', function() {
 
 describe('express middleware', function() {
   beforeEach(function() {
-    this.validator = new expressValidatorHelper.Validator();
-    this.express = expressValidatorHelper.express();
+    this.validator = new Validator();
+    this.express = express();
   });
   it('should return function', function() {
     this.express.should.be.a.Function;
@@ -68,7 +69,7 @@ describe('express middleware', function() {
       validationErrors: _.noop
     };
     this.express(req, {}, _.noop);
-    req.validate().should.be.an.instanceof(expressValidatorHelper.Validator);
+    req.validate().should.be.an.instanceof(Validator);
   });
   it('should add errors to validator object from validate function', function() {
     var req = {
@@ -88,7 +89,7 @@ describe('express middleware', function() {
     var req = {
       validationErrors: _.noop
     };
-    expressValidatorHelper.express({
+    express({
       name: 'customName'
     })(req, {}, _.noop);
     req.customName.should.be.a.Function;

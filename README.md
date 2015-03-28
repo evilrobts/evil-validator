@@ -23,6 +23,47 @@ app.use(expressValidator());
 app.use(expressValidatorHelper());
 ```
 
+## Usage
+
+Just do a check with express-validator as usual. Then instead `req.validationErrors(true)` call `req.validate()`. This method returns a `Validator` object.
+
+## Validator object
+
+### `add(fieldName, msg)`
+
+Add error with `msg` to `fieldName`.
+
+### `isValid()`
+
+Returns `true` if all data is valid. Otherwise `false`.
+
+### `errors`
+
+Object with all validation errors. It should be used only if the `isValid` method returns `false`.
+
+Values contain an array with a list of errors. Example:
+
+```javascript
+{
+  email: ['required', 'invalid format', 'already taken'],
+  password: ['required']
+}
+```
+
+## Customization
+
+You can pass `name` option to middleware with a custom method name:
+
+```javascript
+app.use(expressValidatorHelper({
+  name: 'doValidate'
+});
+
+// ...
+
+var validator = req.doValidate();
+```
+
 ## Before & After
 
 Confirmation handler example.
@@ -30,6 +71,7 @@ Confirmation handler example.
 ### Before
 ```javascript
 exports.create = function(req, res, next) {
+  // checks with reverse order
   req.assert('email', 'invalid format').isEmail();
   req.assert('email', 'required').notEmpty();
 
@@ -73,9 +115,11 @@ exports.create = function(req, res, next) {
 ### After
 ```javascript
 exports.create = function(req, res, next) {
-  req.assert('email', 'invalid format').isEmail();
+  // checks with normal order
   req.assert('email', 'required').notEmpty();
+  req.assert('email', 'invalid format').isEmail();
 
+  // call validate method on `req` object
   var validator = req.validate();
   var email = req.body.email;
 
@@ -85,16 +129,18 @@ exports.create = function(req, res, next) {
     if (err) { return next(err); }
 
     if (user && user.isEmailConfirmed === true) {
-      validator.add('you account already confirmed');
+      // add errror for email field
+      validator.add('email', 'you account already confirmed');
     }
 
     if (!user && !errors.email) {
-      validator.add('user with that email not found')
+      validator.add('email', 'user with that email not found')
     }
 
+    // check if user data is not valid
     if (!validator.isValid()) {
       return res.render('confirmations/new', {
-        errors: validator.errors,
+        errors: validator.errors,  // pass errors property to views
         values: req.body
       });
     }
@@ -148,3 +194,8 @@ User.findOne({ email: req.body.email }, function(err, existsUser) {
 If we do not check this, our error will appear even when unfilled or incorrect e-mail address.
 
 It becomes routine, when we do more of checks like this.
+
+## Tests
+
+- `npm test`
+- `npm run-script test-cov`
