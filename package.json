@@ -1,6 +1,6 @@
 {
   "name": "express-validator-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple express-validator wrapper for easier work with validation error handling",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/evilrobts/express-validator-helper.git"
+    "url": "https://github.com/ssbb/express-validator-helper.git"
   },
   "keywords": [
     "express-validator",
@@ -23,9 +23,9 @@
   "author": "Svyatoslav Bulbakha <mail@ssbb.me> (http://ssbb.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/evilrobts/express-validator-helper/issues"
+    "url": "https://github.com/ssbb/express-validator-helper/issues"
   },
-  "homepage": "https://github.com/evilrobts/express-validator-helper",
+  "homepage": "https://github.com/ssbb/express-validator-helper",
   "dependencies": {
     "lodash": "^3.6.0"
   },

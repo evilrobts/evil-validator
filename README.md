@@ -2,10 +2,10 @@
 
 [![img](http://img.shields.io/npm/v/express-validator-helper.svg)](https://www.npmjs.com/package/express-validator-helper)
 [![img](http://img.shields.io/npm/l/express-validator-helper.svg)](https://www.npmjs.com/package/express-validator-helper)
-[![img](http://img.shields.io/github/stars/evilrobts/express-validator-helper.svg)](https://github.com/evilrobts/express-validator-helper)
+[![img](http://img.shields.io/github/stars/ssbb/express-validator-helper.svg)](https://github.com/ssbb/express-validator-helper)
 [![img](http://img.shields.io/npm/dm/express-validator-helper.svg)](https://www.npmjs.com/package/express-validator-helper)
-[![img](http://img.shields.io/travis/evilrobts/express-validator-helper.svg)](https://travis-ci.org/evilrobts/express-validator-helper)
-[![img](http://img.shields.io/coveralls/evilrobts/express-validator-helper.svg)](https://coveralls.io/r/evilrobts/express-validator-helper)
+[![img](http://img.shields.io/travis/ssbb/express-validator-helper.svg)](https://travis-ci.org/ssbb/express-validator-helper)
+[![img](http://img.shields.io/coveralls/ssbb/express-validator-helper.svg)](https://coveralls.io/r/ssbb/express-validator-helper)
 
 Simple [express-validator](https://github.com/ctavan/express-validator) wrapper for easier work with validation error handling.
 
